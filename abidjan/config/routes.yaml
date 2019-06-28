@@ -1,3 +1,11 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+home:
+    path: /
+    controller: App\Controller\HomeController::index
+
+don:
+    path: /don
+    controller: App\Controller\HomeController::don
+
+mensuel:
+    path: /mensuel
+    controller: App\Controller\HomeController::mensuel

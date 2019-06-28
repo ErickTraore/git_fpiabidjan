@@ -1,12 +1,134 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
-</html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+   <title>{% block title %} Accueuil FPI-FRANCE {% endblock %}</title>
+
+  {% block stylesheets %}
+    {# On charge le CSS de bootstrap depuis le site directement #}
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link href="{{ asset('assets/css/tuto.css') }}" type="text/css" rel="stylesheet" />
+   
+  {% endblock %}
+
+  </head>
+<body>
+ <header class="container-fluid" >
+			  
+						<div class="row">
+								  <div class="col-lg-2 col-md-2 col-sm-2 hidden-xs">
+                  	{# <a href="#"><img class=img-responsive src="{{ asset('assets/img/logofpi.png') }}"  alt="logo"></a> #}
+                    <div> <img src="{{ asset('assets/img/logofpi.png') }}" class="img-circle"  alt="logo"></div>
+                  </div>
+								  <div class="col-lg-9 col-md-9 col-sm-9 ">
+									  <h1 class="text-center">FRONT  POPULAIRE  IVOIRIEN</h1>        
+									  <h3 class="text-center">Représentation FPI-FRANCE</h3>        
+								  </div>
+						</div>
+            {% block head %}
+             <nav class="navbar navbar-inverse">
+				<div class="container-fluid">
+				  <ul class="nav navbar-nav">
+						<li><a href="{{ path('home')}}"><p><h4><span class="label label-info">Accueil</span></h4></p></a> </li>
+						
+                  {% if not app.user %}	
+                  <li class="nav-item">
+						<li> <a href="{{ path('app_register')}}"><p><h4><span class="label label-success">Inscription</span></h4></p></a> </li>
+
+                     <li> <a href="{{ path('app_login')}}"><p><h4><span class="label label-success" >
+                       🔓 Connexion</span></h4></p></a> </li>
+                      </a>
+                  </li> 
+                  {% else %}
+                  <li class="nav-item">
+                     <li> <a href="{{ path('app_logout')}}"><p><h4><span class="label label-warning">
+                      🔐 Déconnexion</span></h4></p></a> </li>
+ 
+                      </a>
+                  </li> 
+
+                  {% endif %}
+                     <li> <a href="/page_perso.php"><p><h4><span class="label label-info">Espace personnel</span></h4></p></a> </li>
+
+           
+            </ul>
+
+				</div>
+          </nav> 
+             {% endblock %}
+</header>
+       
+        <div class="row">
+                <nav class="col-lg-2">
+                {% block gauche %}
+                
+                <ul id="menu-accordeon">
+   <li><a href="#">REPRESENTATION</a>
+      <ul>
+         <li><a href="#">Bureau</a></li>
+         <li><a href="#">Info</a></li>
+      </ul>
+   </li>
+    <li><a href="#">SECTIONS</a>
+      <ul>
+         <li><a href="#">Montpelier</a></li>
+         <li><a href="#">Paris 2</a></li>
+         <li><a href="#">Paris 3</a></li>
+         <li><a href="#">Lylle 1</a></li>
+         <li><a href="#">Marseille</a></li>
+         <li><a href="#">Toulouse</a></li>
+         <li><a href="#">Nantes</a></li>
+         <li><a href="#">Strasbourg</a></li>
+         <li><a href="#">Grenoble</a></li>
+         <li><a href="#">Lyon-1 (Traoré)</a></li>
+         <li><a href="#">Lyon-2 (Sibally)</a></li>
+         <li><a href="#">Lyon-3 (Nadège)</a></li>
+         <li><a href="#">Orléans</a></li>
+      </ul>
+   </li>
+   <li><a href="#">Manifestations</a>
+      <ul>
+         <li><a href="#">Calendrier national</a></li>
+      </ul>
+	</li>
+	<li><a href="#">Cotisations</a>
+      <ul>
+         <li><a href={{path("mensuel")}}>mensuel/annuel</a></li>
+         <li><a href="#">Abonnement mensuel</a></li>
+         <li><a href={{path("don")}}>Dons</a></li>
+      </ul>
+   </li>
+   
+</ul>
+                
+                 {% endblock %}
+                </nav>
+
+                <section class="col-lg-7">
+                {% block body %} {% endblock %}
+                </section>
+
+		            <aside class="col-lg-2">
+                    <div class="row">
+                        <div class="col-sm-12">
+                        {% block droite %}
+                         {% endblock %}
+                    </div>
+                </aside>
+        </div>
+  
+  <footer class="row">
+				<h5 class="text-center">       
+         <p>Association des Amis du FPI en France © {{ 'now'|date('Y') }} and beyond.</p>
+        </h5> 
+      {% block javascripts %}
+        {# Ajoutez ces lignes JavaScript si vous comptez vous servir des fonctionnalités du bootstrap Twitter #}
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+      {% endblock %}
+   </footer>
+ </body>
+ </html>
