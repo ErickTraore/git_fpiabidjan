@@ -36,15 +36,15 @@
 						
                   {% if not app.user %}	
                   <li class="nav-item">
-						<li> <a href="{{ path('app_register')}}"><p><h4><span class="label label-success">Inscription</span></h4></p></a> </li>
+						<li> <a href="{{ path('fos_user_registration_register')}}"><p><h4><span class="label label-success">Inscription</span></h4></p></a> </li>
 
-                     <li> <a href="{{ path('app_login')}}"><p><h4><span class="label label-success" >
+                     <li> <a href="{{ path('fos_user_security_login')}}"><p><h4><span class="label label-success" >
                        🔓 Connexion</span></h4></p></a> </li>
                       </a>
                   </li> 
                   {% else %}
                   <li class="nav-item">
-                     <li> <a href="{{ path('app_logout')}}"><p><h4><span class="label label-warning">
+                     <li> <a href="{{ path('fos_user_security_logout')}}"><p><h4><span class="label label-warning">
                       🔐 Déconnexion</span></h4></p></a> </li>
  
                       </a>
